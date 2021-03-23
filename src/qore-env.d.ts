@@ -22,6 +22,7 @@ declare module "@feedloop/qore-client" {
     status: "ON PROGRESS" | "DONE" | "ICEBOX" | "TODO";
     comment: { nodes: CommentTableRow[] };
     comments: string;
+    numberofcomments: number;
   };
 
   type CommentTableRow = {
@@ -61,6 +62,7 @@ declare module "@feedloop/qore-client" {
       createdAt: Date;
       status: "ON PROGRESS" | "DONE" | "ICEBOX" | "TODO";
       comments: string;
+      numberofcomments: number;
     };
     write: {
       title: string;

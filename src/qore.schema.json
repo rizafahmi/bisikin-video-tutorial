@@ -125,6 +125,18 @@
           "returnType": "text",
           "multiple": true,
           "displayField": false
+        },
+        {
+          "name": "numberofcomments",
+          "type": "rollup",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "numberofcomments",
+          "source": "comment",
+          "destinations": ["id"],
+          "aggregate": "count",
+          "condition": null,
+          "displayField": false
         }
       ]
     },
@@ -341,6 +353,19 @@
           "destinations": ["body"],
           "returnType": "text",
           "multiple": true,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "numberofcomments",
+          "type": "rollup",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "numberofcomments",
+          "source": "comment",
+          "destinations": ["id"],
+          "aggregate": "count",
+          "condition": null,
           "displayField": false,
           "design": null
         }

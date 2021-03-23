@@ -16,6 +16,11 @@ function List({ feedbacks }) {
                   <p className={`list-status ${feedback.status.toLowerCase()}`}>
                     {feedback.status}
                   </p>
+                  {feedback.numberofcomments > 0 && (
+                    <span className="list-comment-badge">
+                      {feedback.numberofcomments} comment(s).
+                    </span>
+                  )}
                   <p className="list-description">{feedback.description}</p>
                 </div>
               </li>
