@@ -74,7 +74,7 @@ declare module "@feedloop/qore-client" {
       status: "ON PROGRESS" | "DONE" | "ICEBOX" | "TODO";
     };
     params: {};
-    actions: {};
+    actions: { setdone: {} };
     forms: {
       feedbackForm: {
         title: string;

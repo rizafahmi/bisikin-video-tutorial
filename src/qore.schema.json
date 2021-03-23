@@ -137,6 +137,17 @@
           "aggregate": "count",
           "condition": null,
           "displayField": false
+        },
+        {
+          "name": "setdone",
+          "type": "action",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "setdone",
+          "parameters": [],
+          "tasks": [{ "type": "update", "update": { "status": "'DONE'" } }],
+          "condition": null,
+          "displayField": false
         }
       ]
     },
@@ -365,6 +376,18 @@
           "source": "comment",
           "destinations": ["id"],
           "aggregate": "count",
+          "condition": null,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "setdone",
+          "type": "action",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "setdone",
+          "parameters": [],
+          "tasks": [{ "type": "update", "update": { "status": "'DONE'" } }],
           "condition": null,
           "displayField": false,
           "design": null
