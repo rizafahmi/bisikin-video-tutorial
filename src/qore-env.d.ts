@@ -4,6 +4,13 @@
 import { QoreSchema } from "@feedloop/qore-client";
 
 declare module "@feedloop/qore-client" {
+  type MemberTableRow = {
+    id: string;
+    email: string;
+    role: { id: string; displayField: string };
+    feedback: { nodes: FeedbackTableRow[] };
+  };
+
   type FeedbackTableRow = {
     id: string;
     description: string;
@@ -13,13 +20,15 @@ declare module "@feedloop/qore-client" {
     slug: string;
     createdAt: Date;
     status: "ON PROGRESS" | "DONE" | "ICEBOX" | "TODO";
+    comment: { nodes: CommentTableRow[] };
+    comments: string;
   };
 
-  type MemberTableRow = {
+  type CommentTableRow = {
     id: string;
-    email: string;
-    role: { id: string; displayField: string };
-    feedback: { nodes: FeedbackTableRow[] };
+    body: string;
+    feedback: FeedbackTableRow;
+    createdAt: Date;
   };
 
   type AllMemberViewRow = {
@@ -51,6 +60,7 @@ declare module "@feedloop/qore-client" {
       slug: string;
       createdAt: Date;
       status: "ON PROGRESS" | "DONE" | "ICEBOX" | "TODO";
+      comments: string;
     };
     write: {
       title: string;
@@ -72,8 +82,46 @@ declare module "@feedloop/qore-client" {
     };
   };
 
+  type AllCommentViewRow = {
+    read: {
+      id: string;
+      body: string;
+      feedback: FeedbackTableRow;
+      createdAt: Date;
+    };
+    write: {
+      body: string;
+      feedback: string[];
+      createdAt: Date;
+    };
+    params: {};
+    actions: {};
+    forms: {};
+  };
+
+  type CommentsByFeedbackViewRow = {
+    read: {
+      id: string;
+      body: string;
+      feedback: FeedbackTableRow;
+      createdAt: Date;
+    };
+    write: {
+      body: string;
+      feedback: string[];
+      createdAt: Date;
+    };
+    params: {
+      feedbackId: string;
+    };
+    actions: {};
+    forms: {};
+  };
+
   type ProjectSchema = {
     allMember: AllMemberViewRow;
     allFeedback: AllFeedbackViewRow;
+    allComment: AllCommentViewRow;
+    commentsByFeedback: CommentsByFeedbackViewRow;
   };
 }
