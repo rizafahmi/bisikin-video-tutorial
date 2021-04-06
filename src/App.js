@@ -4,6 +4,7 @@ import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 import Main from "./pages/Main.js";
 import Detail from "./pages/Detail.js";
+import Register from "./pages/Register.js";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Route path="/feedback/:id">
           <Detail />
         </Route>
-        <Route path="/">
+        <Route path="/register" component={Register} />
+        <Route exact path="/">
           <Main />
         </Route>
       </Switch>
