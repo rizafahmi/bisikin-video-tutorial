@@ -33,6 +33,56 @@
           "multiple": true,
           "relatedTableFields": [],
           "displayField": false
+        },
+        {
+          "name": "password",
+          "type": "password",
+          "deletionProtection": false,
+          "id": "password",
+          "displayField": false
+        },
+        {
+          "name": "fullname",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "fullname",
+          "displayField": false
+        }
+      ]
+    },
+    {
+      "name": "Comment",
+      "type": null,
+      "id": "comment",
+      "fields": [
+        {
+          "name": "body",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "body",
+          "displayField": false
+        },
+        {
+          "name": "feedback",
+          "type": "relation",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "feedback",
+          "table": "feedback",
+          "column": "comment",
+          "multiple": false,
+          "relatedTableFields": ["title"],
+          "displayField": false
+        },
+        {
+          "name": "created_at",
+          "type": "date",
+          "deletionProtection": false,
+          "defaultValue": "NOW()",
+          "id": "createdAt",
+          "displayField": false
         }
       ]
     },
@@ -148,40 +198,14 @@
           "tasks": [{ "type": "update", "update": { "status": "'DONE'" } }],
           "condition": null,
           "displayField": false
-        }
-      ]
-    },
-    {
-      "name": "Comment",
-      "type": null,
-      "id": "comment",
-      "fields": [
-        {
-          "name": "body",
-          "type": "text",
-          "deletionProtection": false,
-          "defaultValue": null,
-          "id": "body",
-          "displayField": false
         },
         {
-          "name": "feedback",
-          "type": "relation",
+          "name": "file",
+          "type": "file",
           "deletionProtection": false,
           "defaultValue": null,
-          "id": "feedback",
-          "table": "feedback",
-          "column": "comment",
-          "multiple": false,
-          "relatedTableFields": ["title"],
-          "displayField": false
-        },
-        {
-          "name": "created_at",
-          "type": "date",
-          "deletionProtection": false,
-          "defaultValue": "NOW()",
-          "id": "createdAt",
+          "fileType": "image",
+          "id": "file",
           "displayField": false
         }
       ]
@@ -202,8 +226,8 @@
       "isPublic": true,
       "permissions": [
         {
-          "insert": false,
-          "select": false,
+          "insert": true,
+          "select": true,
           "update": false,
           "delete": false,
           "viewId": "allMember"
@@ -227,6 +251,42 @@
           "select": true,
           "update": false,
           "delete": false,
+          "viewId": "commentsByFeedback"
+        }
+      ]
+    },
+    {
+      "name": "member",
+      "isAdmin": false,
+      "isEditor": false,
+      "isPublic": false,
+      "permissions": [
+        {
+          "insert": false,
+          "select": false,
+          "update": false,
+          "delete": false,
+          "viewId": "allMember"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allFeedback"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
+          "viewId": "allComment"
+        },
+        {
+          "insert": true,
+          "select": true,
+          "update": true,
+          "delete": true,
           "viewId": "commentsByFeedback"
         }
       ]
@@ -273,6 +333,23 @@
           "deletionProtection": true,
           "defaultValue": null,
           "id": "role",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "password",
+          "type": "password",
+          "deletionProtection": false,
+          "id": "password",
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "fullname",
+          "type": "text",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "id": "fullname",
           "displayField": false,
           "design": null
         }
@@ -389,6 +466,16 @@
           "parameters": [],
           "tasks": [{ "type": "update", "update": { "status": "'DONE'" } }],
           "condition": null,
+          "displayField": false,
+          "design": null
+        },
+        {
+          "name": "file",
+          "type": "file",
+          "deletionProtection": false,
+          "defaultValue": null,
+          "fileType": "image",
+          "id": "file",
           "displayField": false,
           "design": null
         }

@@ -9,6 +9,15 @@ declare module "@feedloop/qore-client" {
     email: string;
     role: { id: string; displayField: string };
     feedback: { nodes: FeedbackTableRow[] };
+    password: string;
+    fullname: string;
+  };
+
+  type CommentTableRow = {
+    id: string;
+    body: string;
+    feedback: FeedbackTableRow;
+    createdAt: Date;
   };
 
   type FeedbackTableRow = {
@@ -23,13 +32,7 @@ declare module "@feedloop/qore-client" {
     comment: { nodes: CommentTableRow[] };
     comments: string;
     numberofcomments: number;
-  };
-
-  type CommentTableRow = {
-    id: string;
-    body: string;
-    feedback: FeedbackTableRow;
-    createdAt: Date;
+    file: string;
   };
 
   type AllMemberViewRow = {
@@ -37,9 +40,13 @@ declare module "@feedloop/qore-client" {
       id: string;
       email: string;
       role: { id: string; displayField: string };
+      password: string;
+      fullname: string;
     };
     write: {
       email: string;
+      password: string;
+      fullname: string;
     };
     params: {};
     actions: {};
@@ -63,6 +70,7 @@ declare module "@feedloop/qore-client" {
       status: "ON PROGRESS" | "DONE" | "ICEBOX" | "TODO";
       comments: string;
       numberofcomments: number;
+      file: string;
     };
     write: {
       title: string;
@@ -72,6 +80,7 @@ declare module "@feedloop/qore-client" {
       slug: string;
       createdAt: Date;
       status: "ON PROGRESS" | "DONE" | "ICEBOX" | "TODO";
+      file: string;
     };
     params: {};
     actions: { setdone: {} };

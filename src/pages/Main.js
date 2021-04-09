@@ -4,11 +4,11 @@ import Template from "./Template.js";
 
 import qoreContext from "../qoreContext.js";
 
-function Main() {
+function Main({ currentUser }) {
   const feedbacks = qoreContext.view("allFeedback").useListRow();
   return (
     <Template>
-      <Form feedbacks={feedbacks} />
+      {currentUser !== null && <Form feedbacks={feedbacks} />}
       <List feedbacks={feedbacks} />
     </Template>
   );

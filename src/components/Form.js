@@ -5,18 +5,28 @@ import qoreContext from "../qoreContext.js";
 function Form({ feedbacks }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
 
   const { insertRow } = qoreContext.view("allFeedback").useInsertRow();
   const { revalidate } = feedbacks;
+  const client = qoreContext.useClient();
+
+  async function handleFileChange(event) {
+    const file = event.currentTarget.files?.item(0);
+    if (!file) return;
+    const url = await client.view("allFeedback").upload(file);
+    setImage(url);
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
 
-    await insertRow({ title, description });
+    await insertRow({ title, description, image });
 
     // reset form
     setTitle("");
     setDescription("");
+    setImage("");
 
     revalidate();
   }
@@ -45,6 +55,9 @@ function Form({ feedbacks }) {
                 onChange={(event) => setDescription(event.target.value)}
                 value={description}
               ></textarea>
+            </div>
+            <div className="form-inside">
+              <input type="file" onChange={handleFileChange} />
             </div>
             <div>
               <button>Save</button>

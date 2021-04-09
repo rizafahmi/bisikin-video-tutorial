@@ -20,6 +20,7 @@ function Detail() {
             <div className="detail-box-title">
               <h3 className="detail-box-title-header">{data.title}</h3>
               <p>{data.description}</p>
+              {data.image && <img src={data.image} alt="attachment" />}
             </div>
             <div className="comment-box">
               <ul className="comment-box-devider">
